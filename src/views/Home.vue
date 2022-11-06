@@ -9,9 +9,9 @@
         alt=""
       />
     </div>
-    <div class="flex mt-3 h-full">
+    <div class="flex mt-3 py-11 h-full">
       <div class="w-1/2 shadow-lg m-5 shadow-lime-200">
-        <p class="px-3 py-6 text-lg text-green-800">
+        <p class="px-3 py-8 text-lg text-green-800">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe animi, totam
           laudantium et voluptas ipsa esse mollitia minus. Soluta obcaecati exercitationem
           molestiae labore amet, veritatis commodi nam odio autem iusto recusandae
@@ -32,11 +32,13 @@
     </div>
   </div>
   <div class="flex justify-center items-center mb-3">
-    <button
-      class="bg-violet-700 hover:bg-violet-500 text-white font-bold py-4 px-6 rounded"
+    <RouterLink to="/register">
+      <button
+        class="bg-violet-700 hover:bg-violet-500 text-white font-bold py-4 px-6 rounded"
+      >
+        Register now
+      </button></RouterLink
     >
-      Register now
-    </button>
   </div>
 </template>
 

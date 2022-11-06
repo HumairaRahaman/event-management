@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div class="bg-teal-100 rounded-b-lg drop-shadow-md px-7 py-4 flex">
+  <div class="bg-gray-50 rounded-b-lg drop-shadow-lg px-7 py-4 flex">
     <div class="basis-1/4">
       <a
         class="text-green-800 font-bold text-2xl"
