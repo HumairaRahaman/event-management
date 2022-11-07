@@ -40,14 +40,14 @@ import Logo from "../../assets/octaglory.svg";
       <img
         alt="Vue logo"
         class="w-full h-32"
-        src="../../assets/0000228_Payment banner.png"
+        src="../../assets/images/Paymentbanner.png"
         width="125"
         height="125"
       />
       <img
         alt="Vue logo"
         class="w-full h-18"
-        src="../../assets/0000229_Membership banner.png"
+        src="../../assets/images/Membershipbanner.png"
         width="125"
         height="125"
       />
