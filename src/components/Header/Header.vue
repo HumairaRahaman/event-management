@@ -19,11 +19,11 @@
           >
             <a><RouterLink to="/">Home</RouterLink></a>
           </li>
-          <li
+          <!-- <li
             class="px-5 py-2 font-semibold text-green-800 rounded-md hover:bg-amber-200 mr-1"
           >
             <a><RouterLink to="/details">Details</RouterLink></a>
-          </li>
+          </li> -->
           <li
             class="px-5 py-2 font-semibold text-green-800 rounded-md hover:bg-amber-200 mr-1"
           >
