@@ -4,7 +4,7 @@
   <div class="h-full">
     <div class="h-1/4">
       <img
-        src="../assets/0000136_COMING SOON DESKTOP.png"
+        src="../assets/images/COMINGSOONDESKTOP.png"
         class="w-full px-5 py-2 rounded-4xl mx-auto"
         alt=""
       />
