@@ -36,7 +36,7 @@
               <button
                 class="bg-violet-700 hover:bg-violet-500 text-white font-bold md:py-[0.75rem] py-2 sm:py-4 px-6 rounded"
               >
-                Register now
+                Buy now
               </button></RouterLink
             >
           </div>

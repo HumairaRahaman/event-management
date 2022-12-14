@@ -33,6 +33,11 @@
               ><RouterLink to="/register">Register</RouterLink></a
             >
           </li>
+          <li
+            class="px-5 py-2 font-semibold text-green-800 rounded-md hover:bg-amber-200 mr-1"
+          >
+            <a class="md:text-lg text-sm"><RouterLink to="/test">Test</RouterLink></a>
+          </li>
         </ul>
       </nav>
     </div>

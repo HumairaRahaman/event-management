@@ -13,7 +13,7 @@
           </div> -->
           <form @submit.prevent="submit">
             <div class="grid md:grid-cols-2 md:gap-6 md:mb-8">
-              <div class="text-center md:text-left">
+              <!-- <div class="text-center md:text-left">
                 <label
                   for="countries"
                   class="block mb-5 text-lg font-semibold text-gray-900 dark:text-gray-400"
@@ -38,7 +38,7 @@
                   class="mr-2"
                 />
                 <label for="earner">Earner</label>
-              </div>
+              </div> -->
             </div>
             <div class="mt-5 text-center md:text-left">
               <p class="font-semibold mb-4">Fill up your Informatioon</p>
@@ -56,7 +56,7 @@
               <label
                 for="floating_name"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >Full Name</label
+                >Cadet Name</label
               >
             </div>
             <div class="relative z-0 mb-6 w-full group">
@@ -73,6 +73,22 @@
                 for="floating_email"
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >Email address</label
+              >
+            </div>
+            <div class="relative z-0 mb-6 w-full group">
+              <input
+                v-model="email"
+                type="text"
+                name="floating_address"
+                id="floating_address"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required=""
+              />
+              <label
+                for="floating_address"
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Address</label
               >
             </div>
 
@@ -128,24 +144,149 @@
                   >Phone number</label
                 >
               </div>
-              <div class="relative z-0 mb-6 w-full group">
-                <input
-                  v-model="profession"
-                  type="text"
-                  name="floating_profession"
-                  id="floating_profession"
-                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required=""
-                />
-                <label
-                  for="floating_profession"
-                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >Profession</label
-                >
+              <div class="md:grid-cols-2 flex space-x-1 sm:space-x-5">
+                <div>
+                  <button
+                    id="dropdownDefault"
+                    data-dropdown-toggle="dropdown"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                  >
+                    Houses
+                    <svg
+                      class="ml-2 w-4 h-4"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dropdown menu -->
+                  <div
+                    id="dropdown"
+                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="dropdownDefault"
+                    >
+                      <li>
+                        <a
+                          @click="hiden"
+                          id="option"
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >SH</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >FH</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >NH</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >RH</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    id="dropdownDefault2"
+                    data-dropdown-toggle="dropdown2"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    type="button"
+                  >
+                    T-Shirt
+                    <svg
+                      class="ml-2 w-4 h-4"
+                      aria-hidden="true"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      ></path>
+                    </svg>
+                  </button>
+                  <!-- Dropdown menu -->
+                  <div
+                    id="dropdown2"
+                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700"
+                  >
+                    <ul
+                      class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                      aria-labelledby="dropdownDefault2"
+                    >
+                      <li>
+                        <a
+                          @click="hiden"
+                          id="option"
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >S</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >M</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >L</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >XL</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#"
+                          class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                          >XXL</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="grid md:grid-cols-2 md:gap-6">
+            <!-- <div class="grid md:grid-cols-2 md:gap-6">
               <div class="text-center sm:text-left">
                 <label
                   for="Mstatus"
@@ -188,8 +329,8 @@
                   >Spouse Name</label
                 >
               </div>
-            </div>
-            <div v-if="status === 'married'" class="mt-4">
+            </div> -->
+            <!-- <div v-if="status === 'married'" class="mt-4">
               <div v-for="(item, index) in kids" :key="item">
                 <div class="flex flex-wrap w-full">
                   <div class="2xl:w-2/5 w-[30%]">
@@ -245,11 +386,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Driver -->
 
-            <div class="mt-4">
+            <!-- <div class="mt-4">
               <div v-for="(item, index) in driver" :key="item">
                 <div class="flex flex-wrap w-full">
                   <div class="w-1/2 2xl:w-2/5">
@@ -287,11 +428,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Maid -->
 
-            <div class="mt-4">
+            <!-- <div class="mt-4">
               <div v-for="(item, index) in maid" :key="item">
                 <div class="flex flex-wrap w-full">
                   <div class="2xl:w-2/5 w-1/2">
@@ -329,10 +470,10 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Souvenir -->
-            <div class="mt-4">
+            <!-- <div class="mt-4">
               <div v-for="(item, index) in souvenir" :key="item">
                 <div class="flex flex-wrap w-full">
                   <div class="w-1/2 2xl:w-2/5">
@@ -370,11 +511,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Guest -->
 
-            <div class="mt-4">
+            <!-- <div class="mt-4">
               <div v-for="(item, index) in guest" :key="item">
                 <div class="flex flex-wrap w-full">
                   <div class="w-1/2 2xl:w-2/5">
@@ -412,21 +553,21 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <div class="md:text-left text-center">
               <button
                 @click="submit"
                 class="mt-6 text-white bg-indigo-700 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:w- w-50% sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Submit
+                Pay Now
               </button>
             </div>
           </form>
         </div>
       </div>
-
-      <div class="order-1">
+      <!----chart---->
+      <!-- <div class="order-1">
         <div
           class="overflow-x-auto top-[10px] md:left-[-10px] sm:ml-[30px] left-[-10px] relative flex justify-center"
         >
@@ -527,15 +668,14 @@
             </tbody>
           </table>
         </div>
-      </div>
+      </div> -->
+      <!----chart---->
     </div>
     <!-- data show the table -->
-    <div class="h-auto py-2 md:py-6 md:w-[90%] sm:w-4/5 mb-6 mt-11 sm:mt-24 m-auto">
+    <!-- <div class="h-auto py-2 md:py-6 md:w-[90%] sm:w-4/5 mb-6 mt-11 sm:mt-24 m-auto">
       <div>
         <p class="ml-5 mb-5 text-center md:text-left font-semibold">Check Your Invoice</p>
       </div>
-      <!-- <div>quantity {{ drivarquan }}</div>
-      <div>totl fee {{ driverfee }}</div> -->
       <div class="overflow-x-auto bg-slate-400 relative">
         <table
           class="w-full text-sm text-left bg-slate-500 text-gray-500 dark:text-gray-400"
@@ -685,7 +825,7 @@
           </div>
         </teleport>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -723,11 +863,9 @@ export default {
   components: {
     ShowData,
   },
-  // data() {
-  //   return {
-  //     member: null,
-  //   };
-  // },
+  data() {
+    house: "sh,fh,nh,rh";
+  },
   setup() {
     let name = ref("");
     let status = ref("");
@@ -811,7 +949,11 @@ export default {
         guest.splice(index, 1);
       }
     };
+    const hiden = () => {
+      document.getElementById("");
 
+      console.log("a");
+    };
     const submit = () => {
       //member
       console.log(member.value);
@@ -965,6 +1107,7 @@ export default {
       GuestaddRow,
       GuestremoveRow,
       submit,
+      hiden,
     };
   },
 };
