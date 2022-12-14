@@ -1,30 +1,25 @@
 <template>
   <div class="h-full">
-    <div class="flex flex-col md:flex-row justify-between h-auto">
-      <div class="basis-[90%] md:order-none order-2">
-        <div
-          class="bg-green-50 px-3 sm:mt-3 mt-11 py-1 h-auto flex items-center rounded-lg"
-        >
+    <div class="flex justify-between h-auto">
+      <div class="basis-[90%]">
+        <div class="bg-green-50 px-3 mt-3 py-1 h-auto flex items-center rounded-lg">
           <h1 class="text-green-700 font-bold text-4xl mx-auto">Event Name</h1>
         </div>
-        <div class="h-auto py-6 md:w-[90%] w-3/4 mb-6 mt-8 md:mt-24 m-auto">
-          <!-- <div>
-            <p>Fill up your Informatioon</p>
-          </div> -->
+        <div class="h-auto py-6 w-3/4 mb-6 mt-24 m-auto">
           <form @submit.prevent="submit">
-            <div class="grid md:grid-cols-2 md:gap-6 md:mb-8">
-              <div class="text-center md:text-left">
+            <div class="grid md:grid-cols-2 md:gap-6">
+              <div>
                 <label
                   for="countries"
-                  class="block mb-5 text-lg font-semibold text-gray-900 dark:text-gray-400"
+                  class="block mb-2 text-sm text-gray-900 dark:text-gray-400"
                   >Registation Type</label
                 >
                 <input
                   type="radio"
                   id="student"
-                  name="member"
-                  v-model="member"
-                  value="Student"
+                  name="student"
+                  v-model="type"
+                  value="student"
                   class="mr-2"
                 />
                 <label for="student" class="pr-8">Student</label>
@@ -32,16 +27,16 @@
                 <input
                   type="radio"
                   id="earner"
-                  name="member"
-                  v-model="member"
-                  value="Earner"
+                  name="earner"
+                  v-model="type"
+                  value="earner"
                   class="mr-2"
                 />
                 <label for="earner">Earner</label>
               </div>
             </div>
-            <div class="mt-5 text-center md:text-left">
-              <p class="font-semibold mb-4">Fill up your Informatioon</p>
+            <div class="mt-5">
+              <p>Fill up your Informatioon</p>
             </div>
             <div class="relative z-0 mb-6 w-full group">
               <input
@@ -146,10 +141,10 @@
               </div>
             </div>
             <div class="grid md:grid-cols-2 md:gap-6">
-              <div class="text-center sm:text-left">
+              <div>
                 <label
-                  for="Mstatus"
-                  class="block mb-2 text-sm text-gray-900 dark:text-gray-400 font-semibold"
+                  for="countries"
+                  class="block mb-2 text-sm text-gray-900 dark:text-gray-400"
                   >Marital Status</label
                 >
                 <input
@@ -190,9 +185,9 @@
               </div>
             </div>
             <div v-if="status === 'married'" class="mt-4">
-              <div v-for="(item, index) in kids" :key="item">
+              <div v-for="(item, index) in form" :key="item">
                 <div class="flex flex-wrap w-full">
-                  <div class="2xl:w-2/5 w-[30%]">
+                  <div class="w-2/5">
                     <div class="relative z-0 mt-6 w-full group pr-4">
                       <input
                         v-model="item.name"
@@ -210,7 +205,7 @@
                       >
                     </div>
                   </div>
-                  <div class="2xl:w-2/5 w-[30%]">
+                  <div class="w-2/5">
                     <div class="relative z-0 mt-6 w-full group pr-4">
                       <input
                         v-model="item.age"
@@ -228,18 +223,15 @@
                       >
                     </div>
                   </div>
-                  <div class="2xl:w-1/5 w-2/5 space-x-1 xl:space-x-5 flex items-end">
+                  <div class="w-1/5 space-x-5 flex items-end">
                     <button
                       type="button"
                       class="bg-red-400 py-2 px-4 text-white"
                       @click="removeRow(index)"
                     >
-                      delate
-                    </button>
-                    <button
-                      @click="addRow"
-                      class="bg-blue-400 py-2 px-1 sm:px-4 ml-0[important] text-white"
-                    >
+                      delate</button
+                    >&nbsp;
+                    <button @click="addRow" class="bg-blue-400 py-2 px-4 text-white">
                       Add more
                     </button>
                   </div>
@@ -252,7 +244,7 @@
             <div class="mt-4">
               <div v-for="(item, index) in driver" :key="item">
                 <div class="flex flex-wrap w-full">
-                  <div class="w-1/2 2xl:w-2/5">
+                  <div class="w-2/5">
                     <div class="relative z-0 mt-6 w-full group pr-4">
                       <input
                         v-model="item.name"
@@ -270,7 +262,7 @@
                       >
                     </div>
                   </div>
-                  <div class="2xl:w-1/5 w-1/2 lg:space-x-5 space-x-1 flex items-end">
+                  <div class="w-1/5 space-x-5 flex items-end">
                     <button
                       type="button"
                       class="bg-red-400 py-2 px-4 text-white"
@@ -278,10 +270,7 @@
                     >
                       delate</button
                     >&nbsp;
-                    <button
-                      @click="DriaddRow"
-                      class="bg-blue-400 py-2 px-2 sm:px-4 text-white"
-                    >
+                    <button @click="DriaddRow" class="bg-blue-400 py-2 px-4 text-white">
                       Add more
                     </button>
                   </div>
@@ -294,7 +283,7 @@
             <div class="mt-4">
               <div v-for="(item, index) in maid" :key="item">
                 <div class="flex flex-wrap w-full">
-                  <div class="2xl:w-2/5 w-1/2">
+                  <div class="w-2/5">
                     <div class="relative z-0 mt-6 w-full group pr-4">
                       <input
                         v-model="item.name"
@@ -312,7 +301,7 @@
                       >
                     </div>
                   </div>
-                  <div class="2xl:w-1/5 w-1/2 lg:space-x-5 space-x-1 flex items-end">
+                  <div class="w-1/5 space-x-5 flex items-end">
                     <button
                       type="button"
                       class="bg-red-400 py-2 px-4 text-white"
@@ -320,10 +309,7 @@
                     >
                       delate</button
                     >&nbsp;
-                    <button
-                      @click="MaidaddRow"
-                      class="bg-blue-400 py-2 px-2 sm:px-4 text-white"
-                    >
+                    <button @click="MaidaddRow" class="bg-blue-400 py-2 px-4 text-white">
                       Add more
                     </button>
                   </div>
@@ -335,7 +321,7 @@
             <div class="mt-4">
               <div v-for="(item, index) in souvenir" :key="item">
                 <div class="flex flex-wrap w-full">
-                  <div class="w-1/2 2xl:w-2/5">
+                  <div class="w-2/5">
                     <div class="relative z-0 mt-6 w-full group pr-4">
                       <input
                         v-model="item.name"
@@ -353,7 +339,7 @@
                       >
                     </div>
                   </div>
-                  <div class="2xl:w-1/5 w-1/2 lg:space-x-5 space-x-1 flex items-end">
+                  <div class="w-1/5 space-x-5 flex items-end">
                     <button
                       type="button"
                       class="bg-red-400 py-2 px-4 text-white"
@@ -363,7 +349,7 @@
                     >&nbsp;
                     <button
                       @click="SouveniraddRow"
-                      class="bg-blue-400 py-2 px-2 sm:px-4 text-white"
+                      class="bg-blue-400 py-2 px-4 text-white"
                     >
                       Add more
                     </button>
@@ -377,7 +363,7 @@
             <div class="mt-4">
               <div v-for="(item, index) in guest" :key="item">
                 <div class="flex flex-wrap w-full">
-                  <div class="w-1/2 2xl:w-2/5">
+                  <div class="w-2/5">
                     <div class="relative z-0 mt-6 w-full group pr-4">
                       <input
                         v-model="item.name"
@@ -395,7 +381,7 @@
                       >
                     </div>
                   </div>
-                  <div class="2xl:w-1/5 w-1/2 lg:space-x-5 space-x-1 flex items-end">
+                  <div class="w-1/5 space-x-5 flex items-end">
                     <button
                       type="button"
                       class="bg-red-400 py-2 px-4 text-white"
@@ -403,10 +389,7 @@
                     >
                       delate</button
                     >&nbsp;
-                    <button
-                      @click="GuestaddRow"
-                      class="bg-blue-400 py-2 px-2 sm:px-4 text-white"
-                    >
+                    <button @click="GuestaddRow" class="bg-blue-400 py-2 px-4 text-white">
                       Add more
                     </button>
                   </div>
@@ -414,128 +397,25 @@
               </div>
             </div>
 
-            <div class="md:text-left text-center">
-              <button
-                @click="submit"
-                class="mt-6 text-white bg-indigo-700 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm md:w- w-50% sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Submit
-              </button>
-            </div>
+            <button
+              @click="submit"
+              class="mt-6 text-white bg-indigo-700 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
-
-      <div class="order-1">
-        <div
-          class="overflow-x-auto top-[10px] md:left-[-10px] sm:ml-[30px] left-[-10px] relative flex justify-center"
-        >
-          <table
-            class="md:w-28 w-[75%] text-sm text-left text-gray-500 dark:text-gray-400"
-          >
-            <tbody>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Student
-                </th>
-                <td class="py-1 px-4">3000</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Earner
-                </th>
-                <td class="py-1 px-4">5000</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Spouse
-                </th>
-                <td class="py-1 px-4">2500</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Kids (below 5)
-                </th>
-                <td class="py-1 px-4">0</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Kids (Above 5)
-                </th>
-                <td class="py-1 px-4">1000</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Kids (Above 18)
-                </th>
-                <td class="py-1 px-4">2500</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Driver
-                </th>
-                <td class="py-1 px-4">1500</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Maid
-                </th>
-                <td class="py-1 px-4">1500</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Souvenir
-                </th>
-                <td class="py-1 px-4">2500</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th
-                  scope="row"
-                  class="py-1 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                >
-                  Guest
-                </th>
-                <td class="py-1 px-4">5000</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
+    <div>quantity {{ drivarquan }}</div>
+    <div>totl fee {{ driverfee }}</div>
+    <!-- <show-data></show-data> -->
+
     <!-- data show the table -->
-    <div class="h-auto py-2 md:py-6 md:w-[90%] sm:w-4/5 mb-6 mt-11 sm:mt-24 m-auto">
+    <div class="mx-56 my-12">
       <div>
-        <p class="ml-5 mb-5 text-center md:text-left font-semibold">Check Your Invoice</p>
+        <p>Check Your Invoice</p>
       </div>
-      <!-- <div>quantity {{ drivarquan }}</div>
-      <div>totl fee {{ driverfee }}</div> -->
       <div class="overflow-x-auto bg-slate-400 relative">
         <table
           class="w-full text-sm text-left bg-slate-500 text-gray-500 dark:text-gray-400"
@@ -556,11 +436,11 @@
                 scope="row"
                 class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                Member:<strong>{{ member }}</strong>
+                Member
               </th>
-              <td class="py-4 px-6">{{ memberquan }}</td>
-              <td class="py-4 px-6">{{ memberfee }}</td>
-              <td class="py-4 px-6">{{ memberfee }}</td>
+              <td class="py-4 px-6">1</td>
+              <td class="py-4 px-6">5000</td>
+              <td class="py-4 px-6">5000</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -569,9 +449,9 @@
               >
                 Spouse
               </th>
-              <td class="py-4 px-6">{{ spousequan }}</td>
+              <td class="py-4 px-6">1</td>
               <td class="py-4 px-6">2500</td>
-              <td class="py-4 px-6">{{ spousefee }}</td>
+              <td class="py-4 px-6">2500</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -580,7 +460,7 @@
               >
                 Kids (Below 5)
               </th>
-              <td class="py-4 px-6">{{ kidb5quan }}</td>
+              <td class="py-4 px-6">1</td>
               <td class="py-4 px-6">0</td>
               <td class="py-4 px-6">0</td>
             </tr>
@@ -591,9 +471,9 @@
               >
                 Kids (Above 5)
               </th>
-              <td class="py-4 px-6">{{ kida5quan }}</td>
+              <td class="py-4 px-6">2</td>
               <td class="py-4 px-6">1000</td>
-              <td class="py-4 px-6">{{ kida5fee }}</td>
+              <td class="py-4 px-6">2000</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -602,9 +482,9 @@
               >
                 Kid (Above 18)
               </th>
-              <td class="py-4 px-6">{{ kida18quan }}</td>
+              <td class="py-4 px-6">0</td>
               <td class="py-4 px-6">2500</td>
-              <td class="py-4 px-6">{{ kida18fee }}</td>
+              <td class="py-4 px-6">0</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -613,9 +493,9 @@
               >
                 Driver
               </th>
-              <td class="py-4 px-6">{{ drivarquan }}</td>
+              <td class="py-4 px-6">1</td>
               <td class="py-4 px-6">1500</td>
-              <td class="py-4 px-6">{{ driverfee }}</td>
+              <td class="py-4 px-6">1500</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -624,20 +504,9 @@
               >
                 Maid
               </th>
-              <td class="py-4 px-6">{{ maidquan }}</td>
+              <td class="py-4 px-6">1</td>
               <td class="py-4 px-6">1500</td>
-              <td class="py-4 px-6">{{ maidfee }}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <th
-                scope="row"
-                class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Souvenir
-              </th>
-              <td class="py-4 px-6">{{ souvenirquan }}</td>
-              <td class="py-4 px-6">2500</td>
-              <td class="py-4 px-6">{{ souvenirfee }}</td>
+              <td class="py-4 px-6">1500</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -646,9 +515,9 @@
               >
                 Guest
               </th>
-              <td class="py-4 px-6">{{ guestquan }}</td>
+              <td class="py-4 px-6">2</td>
               <td class="py-4 px-6">5000</td>
-              <td class="py-4 px-6">{{ guestfee }}</td>
+              <td class="py-4 px-6">10000</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th
@@ -657,20 +526,18 @@
               >
                 Total
               </th>
-              <td class="py-4 px-6">{{ totalquan }}</td>
+              <td class="py-4 px-6">9</td>
               <td class="py-4 px-6"></td>
-              <td class="py-4 px-6">{{ totalfee }}</td>
+              <td class="py-4 px-6">22500</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div
-        class="mt-6 block space-y-4 text-center sm:text-left md:flex md:space-y-0 md:space-x-4 root"
-      >
+      <div class="mt-6 block space-y-4 md:flex md:space-y-0 md:space-x-4 root">
         <button
           @click="modalOpen = true"
           type="submit"
-          class="text-white bg-green-700 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-[16%] sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="text-white bg-green-700 hover:bg-indigo-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Pay Now
         </button>
@@ -689,32 +556,8 @@
   </div>
 </template>
 
-<style scoped>
-.modal {
-  background: rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 90%;
-  left: 0;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
-
-<!---<script setup>
-// import { ref } from "vue";
-// import Detail from "./Details.vue";
-
-// const modalOpen = ref(false);
-//
-</script>--->
-
 <script>
-//import { ref } from "vue";
+import { ref } from "vue";
 import ShowData from "./ShowData.vue";
 import { reactive, ref } from "vue";
 
@@ -723,49 +566,26 @@ export default {
   components: {
     ShowData,
   },
-  // data() {
-  //   return {
-  //     member: null,
-  //   };
-  // },
   setup() {
     let name = ref("");
     let status = ref("");
-    let member = ref("");
+    let type = ref("");
     const modalOpen = ref(false);
     let maid = reactive([{ name: "" }]);
     let souvenir = reactive([{ name: "" }]);
     let guest = reactive([{ name: "" }]);
     let driver = reactive([{ name: "" }]);
-    let kids = reactive([{ name: "", age: 0 }]);
+    const form = reactive([{ name: "", age: 0 }]);
     let drivarquan = ref(0);
     let driverfee = ref(0);
-    let maidquan = ref(0);
-    let maidfee = ref(0);
-    let guestquan = ref(0);
-    let guestfee = ref(0);
-    let souvenirquan = ref(0);
-    let souvenirfee = ref(0);
-    let kidb5quan = ref(0);
-    let kida5quan = ref(0);
-    let kida5fee = ref(0);
-    let kida18quan = ref(0);
-    let kida18fee = ref(0);
-    let kidsage = ref(kids.age);
-    let spousefee = ref(0);
-    let spousequan = ref(0);
-    let memberquan = ref(0);
-    let memberfee = ref(0);
-    let totalquan = ref(0);
-    let totalfee = ref(0);
 
     const addRow = () => {
-      kids.push({ name: "", age: 0 });
+      form.push({ name: "", age: 0 });
     };
 
     const removeRow = (index) => {
-      if (kids.length > 1) {
-        kids.splice(index, 1);
+      if (form.length > 1) {
+        form.splice(index, 1);
       }
     };
 
@@ -813,110 +633,8 @@ export default {
     };
 
     const submit = () => {
-      //member
-      console.log(member.value);
-      if (member.value === "Student") {
-        memberquan.value = 1;
-        memberfee.value = 3000;
-      } else if (member.value === "Earner") {
-        memberquan.value = 1;
-        memberfee.value = 5000;
-      } else {
-        memberquan.value = 0;
-        memberfee.value = 0;
-      }
-      //spouse
-      console.log(status.value);
-
-      if (status.value === "married") {
-        spousefee.value = 2500;
-        spousequan.value = 1;
-      } else {
-        spousefee.value = 0;
-        spousequan.value = 0;
-      }
-      //Kids
-      console.log(kids[0].age);
-
-      console.log(kids.length);
-
-      for (let i = 0; i < kids.length; i++) {
-        if (kids[0].name === "") {
-          kida5quan.value = 0;
-          kida18quan.value = 0;
-          kidb5quan.value = 0;
-        } else if (kids[i].age <= 5) {
-          kidb5quan.value++;
-          kids[i].name;
-        } else if (kids[i].age > 5 && kids[i].age < 19) {
-          kida5quan.value++;
-        } else {
-          kida18quan.value++;
-        }
-      }
-      kida5fee.value = 1000 * kida5quan.value;
-      kida18fee.value = 2500 * kida18quan.value;
-
-      //driver
-      for (let i = 0; i < driver.length; i++) {
-        if (driver[i].name === "") {
-          drivarquan.value = 0;
-        } else {
-          drivarquan.value = Object.keys(driver).length;
-        }
-      }
+      drivarquan.value = Object.keys(driver).length;
       driverfee.value = 1500 * drivarquan.value;
-      //maid
-      for (let i = 0; i < maid.length; i++) {
-        if (maid[i].name === "") {
-          maidquan.value = 0;
-        } else {
-          maidquan.value = Object.keys(maid).length;
-        }
-      }
-      maidfee.value = 1500 * maidquan.value;
-
-      //guest
-      for (let i = 0; i < guest.length; i++) {
-        if (guest[i].name === "") {
-          guestquan.value = 0;
-        } else {
-          guestquan.value = Object.keys(guest).length;
-        }
-      }
-      guestfee.value = 5000 * guestquan.value;
-
-      //souvenir
-      for (let i = 0; i < souvenir.length; i++) {
-        if (souvenir[i].name === "") {
-          souvenirquan.value = 0;
-        } else {
-          souvenirquan.value = Object.keys(guest).length;
-        }
-      }
-      souvenirfee.value = 2500 * souvenirquan.value;
-
-      //total
-      totalquan.value =
-        memberquan.value +
-        spousequan.value +
-        kidb5quan.value +
-        kida5quan.value +
-        kida18quan.value +
-        drivarquan.value +
-        maidquan.value +
-        souvenirquan.value +
-        guestquan.value;
-
-      totalfee.value =
-        memberfee.value +
-        spousefee.value +
-        kida5fee.value +
-        kida18fee.value +
-        driverfee.value +
-        maidfee.value +
-        souvenirfee.value +
-        guestfee.value;
     };
 
     // const saveItem = () =>{
@@ -928,32 +646,14 @@ export default {
 
     return {
       status,
-      member,
-      kids,
+      type,
+      form,
       driver,
-      memberquan,
-      memberfee,
-      spousefee,
-      spousequan,
       drivarquan,
-      maidquan,
-      maidfee,
       driverfee,
-      guestquan,
-      guestfee,
-      souvenirquan,
-      souvenirfee,
-      kidb5quan,
-      kida5quan,
-      kida5fee,
-      kida18quan,
-      kida18fee,
-      kidsage,
       maid,
       souvenir,
       guest,
-      totalquan,
-      totalfee,
       addRow,
       removeRow,
       DriaddRow,
@@ -969,3 +669,18 @@ export default {
   },
 };
 </script>
+<style scoped>
+.modal {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 90%;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
